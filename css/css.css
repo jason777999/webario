@@ -1,0 +1,7 @@
+.bg-teal {
+  background-color: var(--teal);
+}
+
+#logo {
+  max-height: 70px;
+}
