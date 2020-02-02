@@ -7,39 +7,84 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Canvas game</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
+
   <link rel="stylesheet" href="css/css.css">
 </head>
 
-<body>
-  <nav class="navbar sticky-top navbar-light bg-teal navbar-expand-md">
-    <a class="navbar-brand" href="index.html">
+<body class="bg-light d-flex flex-column justify-content-between">
+  <nav class="navbar sticky-top navbar-light bg-wario-yellow navbar-expand-md">
+    <a class="navbar-brand mr-4" href="#">
       <img id="logo" src="img/5e348064d1e3a.png" alt="Wario logo">
+      <h1 class="text-purple d-inline ">WebARIO</h1>
+      <span class="d-none d-sm-inline"> | an HTML canvas game </span>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <div class="collapse navbar-collapse " id="navbarToggler">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index.html">Play <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+        <li class="nav-item active">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#modal" data-whatever="@mdo">Rules</a>
         </li>
-
       </ul>
+    </div>
   </nav>
 
   <main class="m-3 text-center">
-    <div class="container border">
+    <div id="start" class="bg-purple d-flex justify-content-center align-items-center">
+      <button class="btn btn-success" onclick="startGame()">START</button>
+    </div>
+    <div id="playfield" class="container d-none p-3">
+      <div id="controls" class="d-inline-flex flex-column justify-content-around align-content-center m-0 d-md-none">
 
+        <button class="btn btn-info btn-lg" onclick="moveup()">UP</button>
+        <div class="row d-flex justify-content-around">
+          <button class="btn btn-info btn-lg " onclick="moveleft()">LEFT</button>
+          <button class="btn btn-danger btn-lg mx-3" onclick="movestop()">STOP</button>
+          <button class="btn btn-info btn-lg " onclick="moveright()">RIGHT</button>
+        </div>
+        <button class="btn btn-info btn-lg" onclick="movedown()">DOWN</button>
+      </div>
     </div>
   </main>
 
-  <footer class="bg-teal text-center fixed-bottom p-3">
-    Branko Haberkon - &#x1F1E6;&#x1F1F7; - &copy; 2020
+  <footer class="bg-purple text-wario-yellow text-center p-3">
+    <span class="">Branko Haberkon - &#x1F1E6;&#x1F1F7; - &copy; 2020</span>
   </footer>
+
+
+  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Recipient:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Message:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Send message</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="js/jquery-3.3.1.slim.min.js"></script>
   <script src="js/popper.min.js"></script>
