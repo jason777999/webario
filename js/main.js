@@ -13,6 +13,7 @@ function startGame() {
     // Oculto el boton START
     document.querySelector("#start").classList = "d-none";
     document.querySelector("#playfield").classList.remove("d-none");
+
     myScore = new component("1.5em", "wayoshi", "white", 3*vw, 3*vh, "text");
     player = new component(50, 50, "img/running.webp", 10, 120, "image")
     for (let index = 0; index < 5; index++) {
@@ -55,8 +56,8 @@ var myGameArea = {
     this.canvas.height = 40 * vh;
   },
   over: function(state) {
-    state == "won" ? $('#gameWin').modal('show'):($('#gameOver').modal('show'));    
-    clearInterval(this.interval);
+    state == "won" ? ($('#gameWin').modal('show'),clearInterval(this.interval)):($('#gameOver').modal('show'),clearInterval(this.interval));    
+    
 
   }
 }
