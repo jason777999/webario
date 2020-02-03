@@ -13,11 +13,11 @@ function startGame() {
     // Oculto el boton START
     document.querySelector("#start").classList = "d-none";
     document.querySelector("#playfield").classList.remove("d-none");
-    myScore = new component("30px", "Consolas", "purple", 280, 40, "text");
+    myScore = new component("1.5em", "wayoshi", "white", 3*vw, 3*vh, "text");
     player = new component(50, 50, "img/running.webp", 10, 120, "image")
     for (let index = 0; index < 5; index++) {
       const coinName = "coin" + index;
-      window[coinName] = new component(10, 30, "img/coin_lowres.png", 70 * vw - index * random(17, 160), 40 * vh - index * random(17, 40),"image");
+      window[coinName] = new component(10, 30, "img/coin_lowres.png", 70 * vw - random(-17, 160), 40 * vh - index * random(-7, 140),"image");
       coins.push(window[coinName])
     }
     enemy =new component(40, 40, "img/goomba.gif", 70 * vw - random(17, 160), 120, "image");
@@ -54,22 +54,19 @@ var myGameArea = {
     this.canvas.width = 70 * vw;
     this.canvas.height = 40 * vh;
   },
-  // touch: function(coin) {
-  //   coin.touch();
-   
-  // },
   over: function(state) {
-    state == "won" ? alert("Yay! You won"):(player.update(),alert("Game over... Loser"));    
+    state == "won" ? $('#gameWin').modal('show'):($('#gameOver').modal('show'));    
     clearInterval(this.interval);
 
   }
 }
 
-function component(width, height, color, x, y,type) {
+function component(width, height, fill, x, y,type) {
   ctx = myGameArea.context;
+  this.type=type;
   if (type == "image") {
     this.image = new Image();
-    this.image.src = color;
+    this.image.src = fill;
   }
   this.width = width;
   this.height = height;
@@ -77,8 +74,10 @@ function component(width, height, color, x, y,type) {
   this.y = y;
   this.speedX = 0;
   this.speedY = 0;
-  this.color = color;
+  this.fill = fill;
   this.state ="";
+
+ 
 
   this.newPos = function() {
     this.x += this.speedX;
@@ -105,7 +104,7 @@ function component(width, height, color, x, y,type) {
     ctx = myGameArea.context;
     if (this.type == "text") {
       ctx.font = this.width + " " + this.height;
-      ctx.fillStyle = color;
+      ctx.fillStyle = fill;
       ctx.fillText(this.text, this.x, this.y);
     }else if (type == "image") {
       ctx.drawImage(this.image,
@@ -113,7 +112,7 @@ function component(width, height, color, x, y,type) {
         this.y,
         this.width, this.height);
     } else {
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = this.fill;
     ctx.fillRect(this.x, this.y, this.width, this.height);
   }
   this.newPos()
@@ -158,7 +157,8 @@ function updateGameArea() {
       }
     });
     if (player.crashWith(enemy)) {
-      player.image.src="img/goomba.gif";      
+      player.image.src="img/lost.gif";      
+      player.update();
       myGameArea.over("Lost");
     }
     // Movimientos del enemigo

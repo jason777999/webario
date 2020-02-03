@@ -7,7 +7,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Canvas game</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
-
   <link rel="stylesheet" href="css/css.css">
 </head>
 
@@ -39,7 +38,7 @@
       <button class="btn btn-success" onclick="startGame()">START</button>
     </div>
     <div id="playfield" class="container d-none p-3">
-      <div id="controls" class="row d-inline-flex flex-column justify-content-around align-content-center m-0 d-md-none">
+      <div id="controls" class="row d-inline-flex flex-column justify-content-around align-content-center align-items-stretch m-0 d-md-none">
         <button class="btn btn-info btn-lg" onmousedown="move(player,'up',2)">UP</button>
         <div class="row d-flex justify-content-around">
           <button class="btn btn-info btn-lg " onmousedown="move(player,'left',2)">LEFT</button>
@@ -47,6 +46,7 @@
           <button class="btn btn-info btn-lg " onmousedown="move(player,'right',2)">RIGHT</button>
         </div>
         <button class="btn btn-info btn-lg" onmousedown="move(player,'down',2)">DOWN</button>
+
       </div>
     </div>
   </main>
@@ -60,26 +60,61 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalLabel">New message</h5>
+          <h5 class="modal-title" id="modalLabel">RULES</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="recipient-name" class="col-form-label">Recipient:</label>
-              <input type="text" class="form-control" id="recipient-name">
-            </div>
-            <div class="form-group">
-              <label for="message-text" class="col-form-label">Message:</label>
-              <textarea class="form-control" id="message-text"></textarea>
-            </div>
+          <div class="row col-12"><img src="img/running2.gif" alt="running Wario" class="col-4" style="-webkit-transform: scaleX(-1); transform: scaleX(-1);"><span class="col-8 pt-3">You are Wario, running across the desert. Use your keyboard arrows or the on-screen buttons if you are using a small screen.</span></div>
+          <div class="row col-12"><img src="img/coin_lowres.png" alt="Lost" class="col-4"><span class="col-8 pt-3">You have to collect the 5 coins scattered around the world.</span></div>
+          <div class="row col-12"><img src="img/goomba.gif" alt="running goomba" class="col-4"><span class="col-8 pt-3">Watch out, there is Goomba! Don't let him touch you.</span></div>
+          <div class="row col-12"><img src="img/lost.gif" alt="Lost" class="col-4"><span class="col-8 pt-3">The game ends when you collect all the coins or if Goomba catches you.</span></div>
+          <div class="row col-12 my-3 text-center ">GOOD LUCK!</div>
           </form>
         </div>
         <div class="modal-footer">
+          <button type="button" class="btn btn-purple" data-dismiss="modal">Let's GO!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="gameOver" tabindex="-1" role="dialog" aria-labelledby="gameOverLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="gameOverLabel">GAME OVER</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          SCORE: <span id="score"></span>
+        </div>
+        <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Send message</button>
+          <button type="button" class="btn btn-purple" data-dismiss="modal" onclick="startGame()">Play again!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="gameWin" tabindex="-1" role="dialog" aria-labelledby="gameWinLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="gameWinLabel">CONGRATULATIONS!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          YOU WIN!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-purple" data-dismiss="modal" onclick="startGame()">Play again!</button>
         </div>
       </div>
     </div>

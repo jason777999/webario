@@ -28,6 +28,18 @@
   color: var(--wario-yellow);
 }
 
+.btn-purple {
+  color: #fff;
+  background-color: var(--purple);
+  border-color: var(--purple);
+}
+
+.btn-purple:hover {
+  color: var(--wario-yellow);
+  background-color: #6f4288;
+  border-color: var(--wario-yellow);
+}
+
 #logo {
   max-height: 70px;
 }
@@ -48,6 +60,10 @@ body {
   text-decoration: line-through;
 }
 
+h1 .text-linethrough {
+  font-size: 0.75em;
+}
+
 #start {
   height: 30vh;
 }
@@ -61,6 +77,11 @@ body {
   background-color: rgba(0, 0, 0, 0.466);
 }
 
+.modal-body img {
+  width: 100px;
+  height: 100px;
+}
+
 
 /* *********************** */
 
@@ -69,7 +90,7 @@ body {
 
 canvas {
   border: 1px solid #d3d3d3;
-  background-image: url("../img/desert.png");
+  /* background-image: url("../img/desert.png"); */
   background-size: contain;
 }
 
