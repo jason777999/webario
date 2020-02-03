@@ -1,8 +1,4 @@
 
-function random(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
-
 const directions = ["up", "down", "left", "right"]
 let coins = [];
 let score = 0;
@@ -10,20 +6,18 @@ let myScore;
 var coinSound;
 
 function startGame() {
-    // Oculto el boton START
     document.querySelector("#start").classList = "d-none";
     document.querySelector("#playfield").classList.remove("d-none");
-
     myScore = new component("1.5em", "wayoshi", "white", 3*vw, 3*vh, "text");
     player = new component(50, 50, "img/running.webp", 10, 120, "image")
+    enemy = new component(40, 40, "img/goomba.gif", 70 * vw - random(17, 160), 120, "image");
+    coinSound = new sound("sound/Mario-coin-sound.mp3");   
     for (let index = 0; index < 5; index++) {
       const coinName = "coin" + index;
       window[coinName] = new component(10, 30, "img/coin_lowres.png", 70 * vw - random(-17, 160), 40 * vh - index * random(-7, 140),"image");
       coins.push(window[coinName])
     }
-    enemy =new component(40, 40, "img/goomba.gif", 70 * vw - random(17, 160), 120, "image");
-    coinSound = new sound("sound/Mario-coin-sound.mp3");
-    
+ 
     myGameArea.start();
 }
 
@@ -57,8 +51,7 @@ var myGameArea = {
   },
   over: function(state) {
     state == "won" ? ($('#gameWin').modal('show'),clearInterval(this.interval)):($('#gameOver').modal('show'),clearInterval(this.interval));    
-    
-
+  
   }
 }
 
@@ -76,9 +69,7 @@ function component(width, height, fill, x, y,type) {
   this.speedX = 0;
   this.speedY = 0;
   this.fill = fill;
-  this.state ="";
-
- 
+  this.state =""; 
 
   this.newPos = function() {
     this.x += this.speedX;
@@ -97,10 +88,8 @@ function component(width, height, fill, x, y,type) {
       score += 1;
       this.state = "found";
       coinSound.play();
-    }
-    
+    }    
   }
-
   this.update = function() {
     ctx = myGameArea.context;
     if (this.type == "text") {
@@ -152,20 +141,20 @@ function updateGameArea() {
   if(score >4){
     myGameArea.over("won");
   }
-    coins.forEach(coin => {
-      if (player.crashWith(coin)) {
-        coin.touch();
-      }
-    });
-    if (player.crashWith(enemy)) {
-      player.image.src="img/lost.gif";      
-      player.update();
-      myGameArea.over("Lost");
+  coins.forEach(coin => {
+    if (player.crashWith(coin)) {
+      coin.touch();
     }
-    // Movimientos del enemigo
-    move(enemy, directions[random(0, 4)], random(0, 2) * .45)
-    
-    // movimientos segun tecla presionada
+  });
+  if (player.crashWith(enemy)) {
+    player.image.src="img/lost.gif";      
+    player.update();
+    myGameArea.over("Lost");
+  }
+  // Movimientos del enemigo
+  move(enemy, directions[random(0, 4)], random(0, 2) * .45)
+  
+  // movimientos segun tecla presionada
   if (myGameArea.keys && myGameArea.keys[37]) {
     move(player, 'left', .1)
   }
@@ -180,20 +169,16 @@ function updateGameArea() {
   }
 // renderizado
   myGameArea.clear();
-  myScore.text="SCORE: " + score;
-  
-  typeof coin0 !=="undefined" ? coin0.update():null ;
-  typeof coin1 !=="undefined" ? coin1.update():null ;
-  typeof coin2 !=="undefined" ? coin2.update():null ;
-  typeof coin3 !=="undefined" ? coin3.update():null ;
-  typeof coin4 !=="undefined" ? coin4.update():null ;
-  
+  myScore.text="SCORE: " + score;  
+  coin0.update();
+  coin1.update();
+  coin2.update();
+  coin3.update();
+  coin4.update();  
   enemy.update();
   player.update();
   myScore.update();
-
-  // console.log(score)
-  // document.querySelector("#score").innerText = score;
+  document.querySelector("#score").innerText = score;
   
 }
 
@@ -232,7 +217,9 @@ function updateSize() {
 }
 window.addEventListener("resize", updateSize)
 updateSize();
-
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
 // Add sound effects
 function sound(src) {
   this.sound = document.createElement("audio");

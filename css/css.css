@@ -91,6 +91,7 @@ h1 .text-linethrough {
 canvas {
   border: 1px solid #d3d3d3;
   /* background-image: url("../img/desert.png"); */
+  background-color: rgba(137, 43, 226, 0.233);
   background-size: contain;
 }
 
