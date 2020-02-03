@@ -44,6 +44,10 @@ body {
   background-image: url("../img/diagmonds.png");
 }
 
+.text-linethrough {
+  text-decoration: line-through;
+}
+
 #start {
   height: 30vh;
 }
@@ -65,11 +69,10 @@ body {
 
 canvas {
   border: 1px solid #d3d3d3;
-  background-color: #f1f1f1;
-  width: 80%;
-  height: 100%;
+  background-image: url("../img/desert.png");
+  background-size: contain;
 }
 
 #controls {
-  height: 30vh;
+  height: 22vh;
 }

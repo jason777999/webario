@@ -14,8 +14,8 @@
 <body class="bg-light d-flex flex-column justify-content-between">
   <nav class="navbar sticky-top navbar-light bg-wario-yellow navbar-expand-md">
     <a class="navbar-brand mr-4" href="#">
-      <img id="logo" src="img/5e348064d1e3a.png" alt="Wario logo">
-      <h1 class="text-purple d-inline ">WebARIO</h1>
+      <img id="logo" src="img/logo.png" alt="Wario logo">
+      <h1 class="text-purple d-inline ">W<span class="text-linethrough">eb</span>ARIO</h1>
       <span class="d-none d-sm-inline"> | an HTML canvas game </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,15 +39,14 @@
       <button class="btn btn-success" onclick="startGame()">START</button>
     </div>
     <div id="playfield" class="container d-none p-3">
-      <div id="controls" class="d-inline-flex flex-column justify-content-around align-content-center m-0 d-md-none">
-
-        <button class="btn btn-info btn-lg" onclick="moveup()">UP</button>
+      <div id="controls" class="row d-inline-flex flex-column justify-content-around align-content-center m-0 d-md-none">
+        <button class="btn btn-info btn-lg" onmousedown="move(player,'up',2)">UP</button>
         <div class="row d-flex justify-content-around">
-          <button class="btn btn-info btn-lg " onclick="moveleft()">LEFT</button>
-          <button class="btn btn-danger btn-lg mx-3" onclick="movestop()">STOP</button>
-          <button class="btn btn-info btn-lg " onclick="moveright()">RIGHT</button>
+          <button class="btn btn-info btn-lg " onmousedown="move(player,'left',2)">LEFT</button>
+          <button class="btn btn-danger btn-lg mx-3" onmousedown="stopMove(player)">STOP</button>
+          <button class="btn btn-info btn-lg " onmousedown="move(player,'right',2)">RIGHT</button>
         </div>
-        <button class="btn btn-info btn-lg" onclick="movedown()">DOWN</button>
+        <button class="btn btn-info btn-lg" onmousedown="move(player,'down',2)">DOWN</button>
       </div>
     </div>
   </main>
