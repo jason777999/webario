@@ -35,6 +35,12 @@
 
   <main class="m-3 text-center">
     <div id="start" class="bg-purple d-flex justify-content-center align-items-center">
+      <fieldset>
+        <legend>Choose a difficulty</legend>
+        <label><input type="radio" name="dif" id="" value="easy">Easy</label>
+        <label><input type="radio" name="dif" id="" value="normal" checked>Normal</label>
+        <label><input type="radio" name="dif" id="" value="hard">Hard</label>
+      </fieldset>
       <button class="btn btn-success" onclick="startGame()">START</button>
     </div>
     <div id="playfield" class="container d-none p-3">
@@ -74,7 +80,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-purple" data-dismiss="modal">Let's GO!</button>
+          <button type="button" class="btn btn-purple continue" data-dismiss="modal">Let's GO!</button>
         </div>
       </div>
     </div>
@@ -94,7 +100,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-purple" data-dismiss="modal" onclick="location.reload()">Play again!</button>
+          <button id="playAgain" type="button" class="btn btn-purple  continue" data-dismiss="modal" onclick="location.reload()">Play again!</button>
         </div>
       </div>
     </div>
@@ -114,7 +120,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-purple" data-dismiss="modal" onclick="location.reload()">Play again!</button>
+          <button type="button" class="btn btn-purple continue" data-dismiss="modal" onclick="location.reload()">Play again!</button>
         </div>
       </div>
     </div>
