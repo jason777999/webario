@@ -217,8 +217,7 @@ window.addEventListener("resize", updateSize)
 updateSize();
 
 
-function startGame() {
-  dificulty=document.querySelector("input:checked").value;
+function startGame(dificulty) {
   let dificulties ={
     easy:[1,enemies,"enemyParams"],
     normal:[3,enemies,"enemyParams"],

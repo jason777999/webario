@@ -34,14 +34,11 @@
   </nav>
 
   <main class="m-3 text-center">
-    <div id="start" class="bg-purple d-flex justify-content-center align-items-center">
-      <fieldset>
-        <legend>Choose a difficulty</legend>
-        <label><input type="radio" name="dif" id="" value="easy">Easy</label>
-        <label><input type="radio" name="dif" id="" value="normal" checked>Normal</label>
-        <label><input type="radio" name="dif" id="" value="hard">Hard</label>
-      </fieldset>
-      <button class="btn btn-success" onclick="startGame()">START</button>
+    <div id="start" class="bg-purple d-flex flex-wrap justify-content-around align-items-center">
+      <h2 class="col-12">Choose a difficulty:</h2>
+      <button class="btn btn-info" onclick="startGame('easy')">Easy &#x1F476;</button>
+      <button class="btn btn-warning" onclick="startGame('normal')">Normal &#x1F3AE;</button>
+      <button class="btn btn-danger" onclick="startGame('hard')">Hard &#x1F525;</button>
     </div>
     <div id="playfield" class="container d-none p-3">
       <div id="controls" class="row d-inline-flex flex-column justify-content-around align-content-center align-items-stretch m-0 d-md-none">
