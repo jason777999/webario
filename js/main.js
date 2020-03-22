@@ -1,3 +1,6 @@
+
+
+// PARAMS & INITIALIZATIONS
 const directions = ["up", "down", "left", "right"]
 
 let coins = [];
@@ -15,12 +18,14 @@ $('.modal').on('shown.bs.modal', function () {$('.continue').trigger('focus')})
 var myGameArea = {
   canvas: document.createElement("canvas"),
   start: function() {
-    this.canvas.width = 70 * vw;
-    this.canvas.height = 40 * vh;
+    this.widthFactor=57;
+    this.heightFactor=40;
+    this.canvas.width = this.canvas.widthFactor * vw;
+    this.canvas.height = this.canvas.heightFactor * vh;
     this.context = this.canvas.getContext("2d");
     this.context.fillRect(10, 10, this.canvas.width, this.canvas.height)
     const playfield = document.querySelector("#playfield");
-    playfield.insertBefore(this.canvas, playfield.childNodes[0])
+    playfield.insertBefore(this.canvas, playfield.childNodes[2])
 
     this.interval = setInterval(updateGameArea, 20);
 
@@ -37,8 +42,8 @@ var myGameArea = {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)
   },
   resize: function() {
-    this.canvas.width = 70 * vw;
-    this.canvas.height = 40 * vh;
+    this.canvas.width = this.widthFactor * vw;
+    this.canvas.height = this.heightFactor * vh;
   },
   over: function(state) {
     state == "won" ? 
@@ -46,6 +51,21 @@ var myGameArea = {
     (lostSound.play(),player.image.src="img/lost.gif",player.update(),$('#gameOver').modal('show'),clearInterval(this.interval));  
   }
 }
+
+// ******************
+// AUX FUNCTIONS
+
+// Fixes unnecessary scrolling in mobile
+let vh, vw;
+function updateSize() {
+  vh = window.innerHeight * 0.01;
+  vw = window.innerWidth * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  vh >= vw ? [myGameArea.widthFactor, myGameArea.heightFactor]=[70,40] : [myGameArea.widthFactor, myGameArea.heightFactor]=[56,60] ;
+  myGameArea.resize();
+}
+window.addEventListener("resize", updateSize)
+updateSize();
 
 
 
@@ -205,16 +225,6 @@ function updateGameArea() {
   
 }
 
-// Fixes unnecessary scrolling in mobile
-let vh, vw;
-function updateSize() {
-  vh = window.innerHeight * 0.01;
-  vw = window.innerWidth * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-  myGameArea.resize();
-}
-window.addEventListener("resize", updateSize)
-updateSize();
 
 
 function startGame(dificulty) {
@@ -225,7 +235,8 @@ function startGame(dificulty) {
   }
   document.querySelector("#start").classList = "d-none";
   document.querySelector("#playfield").classList.remove("d-none");
-  myScore = new component("1.5em", "wayoshi", "white", 3*vw, 3*vh, "text");
+  document.querySelector("#playfield").classList.add("d-flex", "flex-wrap");
+  myScore = new component("1.5em", "wayoshi", "white", 3*vw, 5*vh, "text");
   player = new component(50, 50, "img/running.webp", 10, 120, "image")      
   function createComponents(quantity, componentArray, componentParams) {
     for (let index = 0; index < quantity; index++) {

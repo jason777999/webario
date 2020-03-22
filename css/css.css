@@ -95,6 +95,22 @@ canvas {
   background-size: contain;
 }
 
-#controls {
-  height: 22vh;
+@media (orientation:landscape) {
+  @media (max-width: 768px) {
+    .d-mobile-landscape-none {
+      display: none!important
+    }
+  }
+  .d-landscape-none {
+    display: none;
+  }
+  .d-portrait-none {
+    display: flex;
+  }
+}
+
+@media (orientation:portrait) {
+  .d-portrait-none {
+    display: none;
+  }
 }

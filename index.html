@@ -6,12 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Canvas game</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/css.css">
 </head>
 
 <body class="bg-light d-flex flex-column justify-content-between">
-  <nav class="navbar sticky-top navbar-light bg-wario-yellow navbar-expand-md">
+  <nav class="navbar sticky-top navbar-light bg-wario-yellow navbar-expand-md d-mobile-landscape-none">
     <a class="navbar-brand mr-4" href="#">
       <img id="logo" src="img/logo.png" alt="Wario logo">
       <h1 class="text-purple d-inline ">W<span class="text-linethrough">eb</span>ARIO</h1>
@@ -33,23 +34,37 @@
     </div>
   </nav>
 
-  <main class="m-3 text-center">
+  <main class="m-3 text-center justify-content-center align-items-center d-flex flex-grow-1">
     <div id="start" class="bg-purple d-flex flex-wrap justify-content-around align-items-center">
       <h2 class="col-12">Choose a difficulty:</h2>
       <button class="btn btn-info" onclick="startGame('easy')">Easy &#x1F476;</button>
       <button class="btn btn-warning" onclick="startGame('normal')">Normal &#x1F3AE;</button>
       <button class="btn btn-danger" onclick="startGame('hard')">Hard &#x1F525;</button>
     </div>
-    <div id="playfield" class="container d-none p-3">
-      <div id="controls" class="row d-inline-flex flex-column justify-content-around align-content-center align-items-stretch m-0 d-md-none">
-        <button class="btn btn-info btn-lg" onmousedown="move(player,'up',2)">UP</button>
-        <div class="row d-flex justify-content-around">
-          <button class="btn btn-info btn-lg " onmousedown="move(player,'left',2)">LEFT</button>
-          <button class="btn btn-danger btn-lg mx-3" onmousedown="stopMove(player)">STOP</button>
-          <button class="btn btn-info btn-lg " onmousedown="move(player,'right',2)">RIGHT</button>
-        </div>
-        <button class="btn btn-info btn-lg" onmousedown="move(player,'down',2)">DOWN</button>
+    <div id="playfield" class="d-none p-3 justify-content-center">
+      <div class="mr-2 flex-column justify-content-between d-portrait-none d-md-none">
+        <button class="btn btn-info btn-lg" onmousedown="move(player,'up',2)"><i class="fas fa-arrow-circle-up"></i></button>
+        <button class="btn btn-info btn-lg" onmousedown="move(player,'left',2)"><i class="fas fa-arrow-circle-left"></i></button>
 
+      </div>
+      <div class="ml-2 flex-column justify-content-between d-portrait-none d-md-none">
+        <button class="btn btn-info btn-lg" onmousedown="move(player,'right',2)"><i class="fas fa-arrow-circle-right"></i></button>
+        <button class="btn btn-info btn-lg" onmousedown="move(player,'down',2)"><i class="fas fa-arrow-circle-down"></i></button>
+      </div>
+
+
+      <div id="controls" class="m-3 d-landscape-none">
+        <div class="row d-flex justify-content-center">
+          <button class="btn btn-info btn-lg" onmousedown="move(player,'up',2)"><i class="fas fa-arrow-circle-up"></i></button>
+        </div>
+        <div class="row d-flex justify-content-center p-3">
+          <button class="btn btn-info btn-lg" onmousedown="move(player,'left',2)"><i class="fas fa-arrow-circle-left"></i></button>
+          <button class="btn btn-danger btn-lg mx-3" onmousedown="stopMove(player)"><i class="fas fa-stop-circle"></i></button>
+          <button class="btn btn-info btn-lg" onmousedown="move(player,'right',2)"><i class="fas fa-arrow-circle-right"></i></button>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <button class="btn btn-info btn-lg" onmousedown="move(player,'down',2)"><i class="fas fa-arrow-circle-down"></i></button>
+        </div>
       </div>
     </div>
   </main>
@@ -127,6 +142,8 @@
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/main.js"></script>
+
+
 </body>
 
 </html>
