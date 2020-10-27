@@ -2,20 +2,22 @@
 
 // PARAMS & INITIALIZATIONS
 const directions = ["up", "down", "left", "right"]
+let currentFrame = 0;
+const frameRate = 60
 
 let coins = [];
 let enemies =[];
 let score = 0;
 let scorelimit=0;
-const coinSound = new sound("sound/Mario-coin-sound.mp3");
-const damageSound = new sound("sound/Mario-coin-sound.mp3");
-const lostSound = new sound("sound/Game-over-ident.mp3")
+const coinSound = new Sound("sound/Mario-coin-sound.mp3");
+const damageSound = new Sound("sound/Mario-coin-sound.mp3");
+const lostSound = new Sound("sound/Game-over-ident.mp3")
 $('.modal').on('shown.bs.modal', function () {$('.continue').trigger('focus')})
 
 
 
 
-var myGameArea = {
+let myGameArea = {
   canvas: document.createElement("canvas"),
   start: function() {
     this.widthFactor=57;
@@ -27,7 +29,7 @@ var myGameArea = {
     const playfield = document.querySelector("#playfield");
     playfield.insertBefore(this.canvas, playfield.childNodes[2])
 
-    this.interval = setInterval(updateGameArea, 20);
+    this.interval = setInterval(updateGameArea, 1000 / frameRate);
 
     window.addEventListener('keydown', function(e) {
       myGameArea.keys = (myGameArea.keys || []);
@@ -48,7 +50,7 @@ var myGameArea = {
   over: function(state) {
     state == "won" ? 
     ($('#gameWin').modal('show'),clearInterval(this.interval)):
-    (lostSound.play(),player.image.src="img/lost.gif",player.update(),$('#gameOver').modal('show'),clearInterval(this.interval));  
+    (lostSound.play(),player.image.src="img/lost.png",player.update(),$('#gameOver').modal('show'),clearInterval(this.interval));  
   }
 }
 
@@ -75,12 +77,13 @@ function random(min, max) {
 
 // ******************
 // Sound constructor
-function sound(src) {
+function Sound(src) {
   this.sound = document.createElement("audio");
   this.sound.src = src;
   this.sound.setAttribute("preload", "auto");
   this.sound.setAttribute("controls", "none");
   this.sound.style.display = "none";
+  this.sound.volume = 0.1;
   document.body.appendChild(this.sound);
   this.play = function(){
     //seteo el currentTime en 0 para que corte el sonido si agarro 2 monedas juntas
@@ -125,6 +128,8 @@ function component(width, height, fill, x, y,type) {
     this.y += this.speedY;
     this.hitBorders();
   }
+
+  
   
   // --Re-draws the component on each frame in its new position
   this.update = function() {
@@ -192,13 +197,17 @@ function stopMove(component) {
   component.speedY = 0;
   component.speedX = 0;
 }
-
+// calcular en qué frame estoy. En base a ese frame es el movimiento que debe hacer el personaje
+function movimiento(enemigo){
+  return (currentFrame / frameRate * 2) % (enemigo.vigilando.length);
+}
 // ******************
 // RENDERS
 function render(){
   myGameArea.clear();
   coins.forEach(coin => coin.update())  
   enemies.forEach(enemy => enemy.update())  
+  boss.update();
   player.update();
   myScore.update()
   // typeof myScore!=="undefined" ? myScore.update():null;
@@ -212,9 +221,11 @@ function updateGameArea() {
   // --Checks for collisions
   coins.forEach(coin => player.crashWith(coin)?coin.touch():null);
   enemies.forEach( enemy =>{player.crashWith(enemy)?(myGameArea.over("Lost")):null;})
+  player.crashWith(boss)?(myGameArea.over("Lost")):null;
   // --Enemies movement
   enemies.forEach(enemy=>move(enemy, directions[random(0, 4)], random(0, 2) * .45) )  
- // --Sets speed based on pressed keys in this frame.
+  move(boss,boss.vigilando[movimiento(boss)],1.5)
+  // --Sets speed based on pressed keys in this frame.
   if (myGameArea.keys && myGameArea.keys[37]) {move(player, 'left', .1)}
   if (myGameArea.keys && myGameArea.keys[39]) {move(player, 'right', .1)}
   if (myGameArea.keys && myGameArea.keys[38]) {move(player, 'up', .1)}
@@ -222,6 +233,7 @@ function updateGameArea() {
   // --Calls the render function
   updateSize()
   render()
+  currentFrame++
   
 }
 
@@ -237,7 +249,9 @@ function startGame(dificulty) {
   document.querySelector("#playfield").classList.remove("d-none");
   document.querySelector("#playfield").classList.add("d-flex", "flex-wrap");
   myScore = new component("1.5em", "wayoshi", "white", 3*vw, 5*vh, "text");
-  player = new component(50, 50, "img/running.webp", 10, 120, "image")      
+  player = new component(50, 50, "img/running2.gif", 10, 120, "image")      
+  boss = new component(50, 50, "img/thwomp.png", 250, 150, "image")     
+  boss.vigilando= ["up", "down", "up", "down", "right", "left", "down", "up", "right", "left", "down", "up", "left", "right", "up", "down", "left", "right", "down", "up"];
   function createComponents(quantity, componentArray, componentParams) {
     for (let index = 0; index < quantity; index++) {
     params={
