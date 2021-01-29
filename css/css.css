@@ -43,6 +43,19 @@
 #logo {
   max-height: 70px;
 }
+.text-wayoshi{
+  font-family: wayoshi;
+}
+
+.text-lg{
+  font-size: 1.3em;
+}
+.text-xl{
+  font-size: 1.5em;
+}
+.text-xxl{
+  font-size: 1.8em;
+}
 
 h1 {
   font-family: wayoshi;
@@ -91,7 +104,8 @@ h1 .text-linethrough {
 canvas {
   border: 1px solid #d3d3d3;
   /* background-image: url("../img/desert.png"); */
-  background-color: rgba(137, 43, 226, 0.233);
+  background-color: rgba(113, 184, 255, 0.397);
+  /* background-color: rgba(137, 43, 226, 0.233); */
   background-size: contain;
 }
 

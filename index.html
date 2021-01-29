@@ -14,11 +14,11 @@
 
 <body class="bg-light d-flex flex-column justify-content-between">
   <nav class="navbar sticky-top navbar-light bg-wario-yellow navbar-expand-md d-mobile-landscape-none">
-    <a class="navbar-brand mr-4" href="#">
+    <a class="navbar-brand mr-4" href="index.html">
       <img id="logo" src="img/logo.png" alt="Wario logo">
       <h1 class="text-purple d-inline ">W<span class="text-linethrough">eb</span>ARIO</h1>
-      <span class="d-none d-sm-inline"> | an HTML canvas game </span>
     </a>
+    <span class="text-lg d-none d-sm-inline"> | an HTML canvas game </span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,7 +26,7 @@
     <div class="collapse navbar-collapse " id="navbarToggler">
       <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="index.html">Play <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index.html">Restart<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="#" data-toggle="modal" data-target="#modal" data-whatever="@mdo">Rules</a>
@@ -71,8 +71,8 @@
   </main>
 
   <footer class="footer text-center p-3 bg-purple text-wario-yellow  container-fluid">
-    <div class="row justify-content-around">
-      <span class="col-12 col-md-4 mb-3 mb-md-0">Copyright &copy; 2020 </span>
+    <div class="row justify-content-around align-items-center">
+      <span class="col-12 col-md-4 mb-3 mb-md-0"> <small>All sprites, names and characters are property of Nintendo&trade; .<br>Example made for educational purposes only.</small></span>
       <span class="col-6 col-md-4"><a class="text-white" href="http://github.com/brankohbk/webario" target="_blank"
           rel="noopener noreferrer">Source code<img src="img/GitHub-Mark-32px.png" alt="Github" class="mx-2"></a></span>
       <span class="col-6 col-md-4">
@@ -100,11 +100,11 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="row col-12"><img src="img/running2.gif" alt="running Wario" class="col-4" style="-webkit-transform: scaleX(-1); transform: scaleX(-1);"><span class="col-8 pt-3">You are Wario, running across the field. Use your keyboard arrows or the on-screen buttons if you are using a small screen.</span></div>
-          <div class="row col-12"><img src="img/coin_lowres.png" alt="Lost" class="col-4"><span class="col-8 pt-3">You have to collect the 5 coins scattered around the world.</span></div>
-          <div class="row col-12"><img src="img/goomba.gif" alt="running goomba" class="col-4"><span class="col-8 pt-3">Watch out, there is Goomba! <br> Don't let him touch you.</span></div>
-          <div class="row col-12"><img src="img/lost.gif" alt="Lost" class="col-4"><span class="col-8 pt-3">The game ends when you collect all the coins or if Goomba catches you.</span></div>
-          <div class="row col-12 my-3 text-center ">GOOD LUCK!</div>
+          <div class="row col-12 mt-3 align-items-center"><img src="img/running2.gif" alt="running Wario" class="col-4" style="-webkit-transform: scaleX(-1); transform: scaleX(-1);"><span class="col-8 pt-3">You are Wario, running over a frozen lake.<br>Use your keyboard arrows or the on-screen buttons (if you are using a small device) to move.</span></div>
+          <div class="row col-12 mt-3 align-items-center"><img src="img/coin_lowres.png" alt="Lost" class="col-4"><span class="col-8 pt-3">You must collect the 5 coins scattered around the field.</span></div>
+          <div class="row col-12 mt-3 align-items-center"><img src="img/goomba.gif" alt="running goomba" class="col-4"><span class="col-8 pt-3">Watch out, there is Goomba! <br> Don't let him touch you.</span></div>
+          <div class="row col-12 mt-3 align-items-center"><img src="img/lost.gif" alt="Lost" class="col-4"><span class="col-8 pt-3">The game ends when you collect all the coins or if Goomba catches you.</span></div>
+          <div class="row col-12 mt-3 align-items-center my-3 justify-content-center text-wayoshi text-xl">GOOD LUCK!</div>
           </form>
         </div>
         <div class="modal-footer">
